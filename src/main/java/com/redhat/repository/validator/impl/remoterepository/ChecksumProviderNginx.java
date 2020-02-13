@@ -1,5 +1,7 @@
 package com.redhat.repository.validator.impl.remoterepository;
 
+import static com.redhat.repository.validator.internal.Utils.calculateChecksum;
+
 import java.io.File;
 import java.net.URI;
 
@@ -23,8 +25,7 @@ public class ChecksumProviderNginx implements ChecksumProvider {
 
     @Override
     public String getLocalArtifactChecksum(URI localArtifact) {
-        File file = new File(localArtifact);
-        return String.format("%1$x-%2$x", file.lastModified() / 1000, file.length());
+        return calculateChecksum(new File(localArtifact), "md5");
     }
     
 }

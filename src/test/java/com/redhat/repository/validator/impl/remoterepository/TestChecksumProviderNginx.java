@@ -19,14 +19,14 @@ public class TestChecksumProviderNginx {
     public void shouldParseHashFromHeaders() throws Exception {
         ChecksumProviderNginx providerNginx = new ChecksumProviderNginx();
         
-        URI remoteArtifact = new URI("http://repo1.maven.org/maven2/org/hibernate/hibernate-core/4.3.6.Final/hibernate-core-4.3.6.Final.pom");
+        URI remoteArtifact = new URI("https://repo1.maven.org/maven2/org/hibernate/hibernate-core/4.3.6.Final/hibernate-core-4.3.6.Final.pom");
         
         HttpClient httpClient = HttpClients.createDefault();
         HttpUriRequest httpRequest = RequestBuilder.head().setUri(remoteArtifact).build();
         HttpResponse httpResponse = httpClient.execute(httpRequest);
 
         String remoteChecksum = providerNginx.getRemoteArtifactChecksum(remoteArtifact, httpResponse);
-        assertEquals("53c7583f-d11", remoteChecksum);
+        assertEquals("eb1b963b003db2e7a964cc2a98a20ff8", remoteChecksum);
     }
 
 }
